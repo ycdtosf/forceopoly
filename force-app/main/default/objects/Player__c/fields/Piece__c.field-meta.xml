@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Piece__c</fullName>
+    <externalId>false</externalId>
+    <label>Piece</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Battleship</fullName>
+                <default>false</default>
+                <label>Battleship</label>
+            </value>
+            <value>
+                <fullName>Boot</fullName>
+                <default>false</default>
+                <label>Boot</label>
+            </value>
+            <value>
+                <fullName>Cannon</fullName>
+                <default>false</default>
+                <label>Cannon</label>
+            </value>
+            <value>
+                <fullName>Thimble</fullName>
+                <default>false</default>
+                <label>Thimble</label>
+            </value>
+            <value>
+                <fullName>Top Hat</fullName>
+                <default>false</default>
+                <label>Top Hat</label>
+            </value>
+            <value>
+                <fullName>Iron</fullName>
+                <default>false</default>
+                <label>Iron</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
