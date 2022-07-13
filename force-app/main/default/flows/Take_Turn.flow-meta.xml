@@ -2,33 +2,10 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>55.0</apiVersion>
     <assignments>
-        <name>Roll_Dice</name>
-        <label>Roll Dice</label>
-        <locationX>182</locationX>
-        <locationY>398</locationY>
-        <assignmentItems>
-            <assignToReference>Load_Turn.Roll__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <numberValue>6.0</numberValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Load_Turn.IsRollDouble__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>First_Turn</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
         <name>Set_Position_to_Formula</name>
         <label>Set Position to Formula</label>
         <locationX>314</locationX>
-        <locationY>638</locationY>
+        <locationY>878</locationY>
         <assignmentItems>
             <assignToReference>position</assignToReference>
             <operator>Assign</operator>
@@ -44,7 +21,7 @@
         <name>Set_Position_to_Roll</name>
         <label>Set Position to Roll</label>
         <locationX>50</locationX>
-        <locationY>638</locationY>
+        <locationY>878</locationY>
         <assignmentItems>
             <assignToReference>position</assignToReference>
             <operator>Assign</operator>
@@ -56,11 +33,34 @@
             <targetReference>Load_Game_Property_by_Position</targetReference>
         </connector>
     </assignments>
+    <assignments>
+        <name>Set_Roll_Results</name>
+        <label>Set Roll Results</label>
+        <locationX>182</locationX>
+        <locationY>638</locationY>
+        <assignmentItems>
+            <assignToReference>Load_Turn.Roll__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>rollTotal</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Load_Turn.IsRollDouble__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>rollDouble</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>First_Turn</targetReference>
+        </connector>
+    </assignments>
     <decisions>
         <name>First_Turn</name>
         <label>First Turn?</label>
         <locationX>182</locationX>
-        <locationY>518</locationY>
+        <locationY>758</locationY>
         <defaultConnector>
             <targetReference>Set_Position_to_Formula</targetReference>
         </defaultConnector>
@@ -91,6 +91,17 @@
 )</expression>
         <scale>0</scale>
     </formulas>
+    <formulas>
+        <name>rollDouble</name>
+        <dataType>Boolean</dataType>
+        <expression>{!Roll_Dice_1.value} == {!Roll_Dice_2.value}</expression>
+    </formulas>
+    <formulas>
+        <name>rollTotal</name>
+        <dataType>Number</dataType>
+        <expression>{!Roll_Dice_1.value} + {!Roll_Dice_2.value}</expression>
+        <scale>0</scale>
+    </formulas>
     <interviewLabel>Take Turn {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Take Turn</label>
     <processMetadataValues>
@@ -116,7 +127,7 @@
         <name>Load_Game_Property_by_Position</name>
         <label>Load Game Property by Position</label>
         <locationX>182</locationX>
-        <locationY>854</locationY>
+        <locationY>1094</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <filterLogic>and</filterLogic>
         <filters>
@@ -160,7 +171,7 @@
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <connector>
-            <targetReference>Roll_Dice</targetReference>
+            <targetReference>Roll_Dice_1</targetReference>
         </connector>
         <fields>
             <name>dt1</name>
@@ -178,6 +189,40 @@
         </connector>
     </start>
     <status>Draft</status>
+    <subflows>
+        <name>Roll_Dice_1</name>
+        <label>Roll Dice 1</label>
+        <locationX>182</locationX>
+        <locationY>398</locationY>
+        <connector>
+            <targetReference>Roll_Dice_2</targetReference>
+        </connector>
+        <flowName>Roll</flowName>
+        <inputAssignments>
+            <name>sides</name>
+            <value>
+                <numberValue>6.0</numberValue>
+            </value>
+        </inputAssignments>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </subflows>
+    <subflows>
+        <name>Roll_Dice_2</name>
+        <label>Roll Dice 2</label>
+        <locationX>182</locationX>
+        <locationY>518</locationY>
+        <connector>
+            <targetReference>Set_Roll_Results</targetReference>
+        </connector>
+        <flowName>Roll</flowName>
+        <inputAssignments>
+            <name>sides</name>
+            <value>
+                <numberValue>6.0</numberValue>
+            </value>
+        </inputAssignments>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </subflows>
     <variables>
         <name>position</name>
         <dataType>Number</dataType>
