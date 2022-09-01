@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Owner__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Player in possession of the Game Card. Only valid for Get Out of Jail Action Type.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Player in possession of the Game Card. Only valid for Get Out of Jail Action Type.</inlineHelpText>
+    <label>Owner</label>
+    <referenceTo>Player__c</referenceTo>
+    <relationshipLabel>Game Cards</relationshipLabel>
+    <relationshipName>GameCards</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Rent__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(Hotel__c == 1, Property__r.RentHotel__c,
+IF(Houses__c == 4, Property__r.RentHouse4__c,
+IF(Houses__c == 3, Property__r.RentHouse3__c,
+IF(Houses__c == 2, Property__r.RentHouse2__c,
+IF(Houses__c == 1, Property__r.RentHouse1__c,
+IF(IsMonopoly__c == true, Property__r.Rent__c * 2, Property__r.Rent__c))))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Rent</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

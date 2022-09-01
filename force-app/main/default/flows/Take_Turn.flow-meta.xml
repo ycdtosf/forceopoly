@@ -2,10 +2,134 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>55.0</apiVersion>
     <assignments>
+        <name>Buy_Assignments</name>
+        <label>Buy Assignments</label>
+        <locationX>50</locationX>
+        <locationY>2822</locationY>
+        <assignmentItems>
+            <assignToReference>Load_Game_Property_by_Position.Owner__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>player.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>player.Money__c</assignToReference>
+            <operator>Subtract</operator>
+            <value>
+                <elementReference>Load_Game_Property_by_Position.Property__r.PropertyCost__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Load_Turn.Outcome__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Buy Property</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Uncheck_Current_Turn</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Give_Player_200</name>
+        <label>Give Player 200</label>
+        <locationX>402</locationX>
+        <locationY>2246</locationY>
+        <assignmentItems>
+            <assignToReference>player.Money__c</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <numberValue>200.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Evaluate_Outcomes</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Give_Player_400</name>
+        <label>Give Player 400</label>
+        <locationX>138</locationX>
+        <locationY>2246</locationY>
+        <assignmentItems>
+            <assignToReference>player.Money__c</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <numberValue>400.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Evaluate_Outcomes</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Init_Player</name>
+        <label>Init Player</label>
+        <locationX>402</locationX>
+        <locationY>398</locationY>
+        <assignmentItems>
+            <assignToReference>player.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Load_Turn.Player__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>player.Money__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Load_Turn.Player__r.Money__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>player.Sequence__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Load_Turn.Player__r.Sequence__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>s1</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Game_Property_on_Turn_0</name>
+        <label>Set Game Property on Turn</label>
+        <locationX>534</locationX>
+        <locationY>1910</locationY>
+        <assignmentItems>
+            <assignToReference>Load_Turn.GameProperty__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Load_Game_Property_by_Position.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Go_Phase</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Game_Property_on_Turn_to_Jail</name>
+        <label>Set Game Property on Turn to Jail</label>
+        <locationX>270</locationX>
+        <locationY>1910</locationY>
+        <assignmentItems>
+            <assignToReference>Load_Turn.GameProperty__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Load_Jail_Game_Property.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Go_Phase</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Set_Position_to_Formula</name>
         <label>Set Position to Formula</label>
-        <locationX>314</locationX>
-        <locationY>878</locationY>
+        <locationX>666</locationX>
+        <locationY>1238</locationY>
         <assignmentItems>
             <assignToReference>position</assignToReference>
             <operator>Assign</operator>
@@ -18,10 +142,26 @@
         </connector>
     </assignments>
     <assignments>
+        <name>Set_Position_to_Jail</name>
+        <label>Set Position to Jail</label>
+        <locationX>138</locationX>
+        <locationY>1238</locationY>
+        <assignmentItems>
+            <assignToReference>position</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Load_Jail_Game_Property.PropertyPosition__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Load_Game_Property_by_Position</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Set_Position_to_Roll</name>
         <label>Set Position to Roll</label>
-        <locationX>50</locationX>
-        <locationY>878</locationY>
+        <locationX>402</locationX>
+        <locationY>1238</locationY>
         <assignmentItems>
             <assignToReference>position</assignToReference>
             <operator>Assign</operator>
@@ -36,8 +176,8 @@
     <assignments>
         <name>Set_Roll_Results</name>
         <label>Set Roll Results</label>
-        <locationX>182</locationX>
-        <locationY>638</locationY>
+        <locationX>402</locationX>
+        <locationY>878</locationY>
         <assignmentItems>
             <assignToReference>Load_Turn.Roll__c</assignToReference>
             <operator>Assign</operator>
@@ -53,20 +193,339 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>First_Turn</targetReference>
+            <targetReference>s3_0</targetReference>
         </connector>
     </assignments>
+    <assignments>
+        <name>Uncheck_Current_Turn</name>
+        <label>Uncheck Current Turn</label>
+        <locationX>402</locationX>
+        <locationY>3134</locationY>
+        <assignmentItems>
+            <assignToReference>Load_Turn.IsCurrentTurn__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Turn</targetReference>
+        </connector>
+    </assignments>
+    <choices>
+        <name>radioNo</name>
+        <choiceText>NOPE</choiceText>
+        <dataType>String</dataType>
+    </choices>
+    <choices>
+        <name>radioYes</name>
+        <choiceText>YUP</choiceText>
+        <dataType>String</dataType>
+    </choices>
+    <choices>
+        <name>Yes</name>
+        <choiceText>Yes</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Yes</stringValue>
+        </value>
+    </choices>
     <decisions>
-        <name>First_Turn</name>
-        <label>First Turn?</label>
+        <name>Decision_to_Buy</name>
+        <label>Decision to Buy</label>
         <locationX>182</locationX>
-        <locationY>758</locationY>
+        <locationY>2702</locationY>
+        <defaultConnector>
+            <targetReference>Uncheck_Current_Turn</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Decision_to_Buy_Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>radio1</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>radioYes</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Buy_Assignments</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>End_Turn_Decisions</name>
+        <label>End Turn Decisions</label>
+        <locationX>402</locationX>
+        <locationY>3830</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>End_Turn_Decisions_Rolled_Double</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Load_Turn.IsRollDouble__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>goingToJail</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Insert_Current_Player_s_Next_Turn_0</targetReference>
+            </connector>
+            <label>Rolled Double</label>
+        </rules>
+        <rules>
+            <name>End_Turn_Decisions_No_Double</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Load_Turn.IsRollDouble__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Insert_Next_Players_Turn</targetReference>
+            </connector>
+            <label>No Double</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Evaluate_Outcomes</name>
+        <label>Evaluate Outcomes</label>
+        <locationX>402</locationX>
+        <locationY>2462</locationY>
+        <defaultConnector>
+            <targetReference>Uncheck_Current_Turn</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Evaluate_Outcomes_Jail_Three_Double_Rolls</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>goingToJail</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Uncheck_Current_Turn</targetReference>
+            </connector>
+            <label>Jail - Three Double Rolls</label>
+        </rules>
+        <rules>
+            <name>Evaluate_Outcomes_Property_No_Owner</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Load_Game_Property_by_Position.Owner__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>s2</targetReference>
+            </connector>
+            <label>Property - No Owner</label>
+        </rules>
+        <rules>
+            <name>Evaluate_Outcomes_Property_Owner_is_Current_Player</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Load_Game_Property_by_Position.Owner__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>Load_Turn.Player__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Uncheck_Current_Turn</targetReference>
+            </connector>
+            <label>Property - Owner is Current Player</label>
+        </rules>
+        <rules>
+            <name>Evaluate_Outcomes_Property_Owner_is_not_Current_Player</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Load_Game_Property_by_Position.Owner__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>Load_Turn.Player__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>s5</targetReference>
+            </connector>
+            <label>Property - Owner is not Current Player</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>For determining if player landed on or passed go.</description>
+        <name>Go_Phase</name>
+        <label>Go Phase</label>
+        <locationX>402</locationX>
+        <locationY>2126</locationY>
+        <defaultConnector>
+            <targetReference>Evaluate_Outcomes</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Go_Phase_Landed_On_Go</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>position</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Give_Player_400</targetReference>
+            </connector>
+            <label>Landed On Go</label>
+        </rules>
+        <rules>
+            <name>Go_Phase_Passed_Go</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Load_Turn.GameProperty__r.PropertyPosition__c</leftValueReference>
+                <operator>LessThan</operator>
+                <rightValue>
+                    <elementReference>Load_Turn.PreviousPlayerTurn__r.GameProperty__r.PropertyPosition__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Give_Player_200</targetReference>
+            </connector>
+            <label>Passed Go</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Land_on_Go_To_Jail_Phase</name>
+        <label>Land on Go To Jail Phase</label>
+        <locationX>402</locationX>
+        <locationY>1790</locationY>
+        <defaultConnector>
+            <targetReference>Set_Game_Property_on_Turn_0</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Land_on_Go_To_Jail_Phase_Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Load_Game_Property_by_Position.Property__r.RecordType.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Go To Jail</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Game_Property_on_Turn_to_Jail</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Land_Phase</name>
+        <label>Land Phase</label>
+        <locationX>402</locationX>
+        <locationY>1574</locationY>
+        <defaultConnector>
+            <targetReference>Land_on_Go_To_Jail_Phase</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Card_Phase_Community_Chest</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Load_Game_Property_by_Position.Property__r.RecordType.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Community Chest</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Land_on_Go_To_Jail_Phase</targetReference>
+            </connector>
+            <label>Community Chest</label>
+        </rules>
+        <rules>
+            <name>Card_Phase_Chance</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Load_Game_Property_by_Position.Property__r.RecordType.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Chance</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Land_on_Go_To_Jail_Phase</targetReference>
+            </connector>
+            <label>Chance</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Turn_Outcome_Phase</name>
+        <label>Turn Outcome Phase</label>
+        <locationX>402</locationX>
+        <locationY>3374</locationY>
+        <defaultConnector>
+            <targetReference>Get_Next_Player</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Buy_Property</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Load_Turn.Outcome__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Buy Property</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Eval_Monopoly</targetReference>
+            </connector>
+            <label>Buy Property</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Turn_State</name>
+        <label>Turn State</label>
+        <locationX>402</locationX>
+        <locationY>1118</locationY>
         <defaultConnector>
             <targetReference>Set_Position_to_Formula</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
-            <name>First_Turn_Yes</name>
+            <name>Going_To_Jail</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>goingToJail</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Position_to_Jail</targetReference>
+            </connector>
+            <label>Going To Jail</label>
+        </rules>
+        <rules>
+            <name>Turn_State_First_Turn</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>Load_Turn.PreviousPlayerTurn__c</leftValueReference>
@@ -78,7 +537,7 @@
             <connector>
                 <targetReference>Set_Position_to_Roll</targetReference>
             </connector>
-            <label>Yes</label>
+            <label>First Turn</label>
         </rules>
     </decisions>
     <formulas>
@@ -90,6 +549,13 @@
    {!Load_Turn.Roll__c} + {!Load_Turn.PreviousPlayerTurn__r.GameProperty__r.Property__r.Position__c}
 )</expression>
         <scale>0</scale>
+    </formulas>
+    <formulas>
+        <name>goingToJail</name>
+        <dataType>Boolean</dataType>
+        <expression>{!Load_Turn.IsRollDouble__c} == true &amp;&amp;
+{!Load_Turn.PreviousPlayerTurn__r.IsRollDouble__c} == true &amp;&amp;
+{!Load_Turn.PreviousPlayerTurn__r.PreviousPlayerTurn__r.IsRollDouble__c} == true</expression>
     </formulas>
     <formulas>
         <name>rollDouble</name>
@@ -123,12 +589,91 @@
         </value>
     </processMetadataValues>
     <processType>Flow</processType>
+    <recordCreates>
+        <name>Insert_Current_Player_s_Next_Turn_0</name>
+        <label>Insert Current Player&apos;s Next Turn</label>
+        <locationX>138</locationX>
+        <locationY>3950</locationY>
+        <connector>
+            <targetReference>Update_Game_Current_Turn_0_0</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Game__c</field>
+            <value>
+                <elementReference>Load_Turn.Game__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>IsCurrentTurn__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Player__c</field>
+            <value>
+                <elementReference>Load_Turn.Player__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>PreviousPlayerTurn__c</field>
+            <value>
+                <elementReference>Load_Turn.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>PreviousTurn__c</field>
+            <value>
+                <elementReference>Load_Turn.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Turn__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordCreates>
+        <name>Insert_Next_Players_Turn</name>
+        <label>Insert Next Player&apos;s Turn</label>
+        <locationX>402</locationX>
+        <locationY>3950</locationY>
+        <connector>
+            <targetReference>Update_Game_Current_Turn_0</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Game__c</field>
+            <value>
+                <elementReference>Load_Turn.Game__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>IsCurrentTurn__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Player__c</field>
+            <value>
+                <elementReference>Get_Next_Player.nextPlayer.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>PreviousTurn__c</field>
+            <value>
+                <elementReference>Load_Turn.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Turn__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
     <recordLookups>
         <name>Load_Game_Property_by_Position</name>
         <label>Load Game Property by Position</label>
-        <locationX>182</locationX>
-        <locationY>1094</locationY>
+        <locationX>402</locationX>
+        <locationY>1454</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Land_Phase</targetReference>
+        </connector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>PropertyPosition__c</field>
@@ -142,13 +687,34 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
+        <name>Load_Jail_Game_Property</name>
+        <label>Load Jail Game Property</label>
+        <locationX>402</locationX>
+        <locationY>278</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Init_Player</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>PropertyPosition__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <numberValue>10.0</numberValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>GameProperty__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
         <name>Load_Turn</name>
         <label>Load Turn</label>
-        <locationX>182</locationX>
+        <locationX>402</locationX>
         <locationY>158</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>s1</targetReference>
+            <targetReference>Load_Jail_Game_Property</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -162,11 +728,63 @@
         <object>Turn__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordUpdates>
+        <name>Update_Game_Current_Turn_0</name>
+        <label>Update Game Current Turn</label>
+        <locationX>402</locationX>
+        <locationY>4070</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Load_Turn.Game__c</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>CurrentTurn__c</field>
+            <value>
+                <elementReference>Insert_Next_Players_Turn</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Game__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Game_Current_Turn_0_0</name>
+        <label>Update Game Current Turn</label>
+        <locationX>138</locationX>
+        <locationY>4070</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Load_Turn.Game__c</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>CurrentTurn__c</field>
+            <value>
+                <elementReference>Insert_Current_Player_s_Next_Turn_0</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Game__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Turn</name>
+        <label>Update Turn</label>
+        <locationX>402</locationX>
+        <locationY>3254</locationY>
+        <connector>
+            <targetReference>Turn_Outcome_Phase</targetReference>
+        </connector>
+        <inputReference>Load_Turn</inputReference>
+    </recordUpdates>
     <screens>
         <name>s1</name>
         <label>s1</label>
-        <locationX>182</locationX>
-        <locationY>278</locationY>
+        <locationX>402</locationX>
+        <locationY>518</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -181,8 +799,104 @@
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
     </screens>
+    <screens>
+        <name>s2</name>
+        <label>s2</label>
+        <locationX>182</locationX>
+        <locationY>2582</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Decision_to_Buy</targetReference>
+        </connector>
+        <fields>
+            <name>dt2</name>
+            <fieldText>&lt;p&gt;[This Property] is not owned by anyone. Would you like to buy it for [MONEY]?&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;If you do not buy [This Property] it will go up for auction.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>radio1</name>
+            <choiceReferences>radioYes</choiceReferences>
+            <choiceReferences>radioNo</choiceReferences>
+            <dataType>String</dataType>
+            <defaultSelectedChoiceReference>radioNo</defaultSelectedChoiceReference>
+            <fieldType>RadioButtons</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>s3_0</name>
+        <label>s3</label>
+        <locationX>402</locationX>
+        <locationY>998</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Turn_State</targetReference>
+        </connector>
+        <fields>
+            <name>dt3_0</name>
+            <fieldText>&lt;p&gt;YOU ROLLED A {!rollTotal}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>dt4_0</name>
+            <fieldText>&lt;p&gt;YOU ROLLED A DOUBLE.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>rollDouble</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>dt5</name>
+            <fieldText>&lt;p&gt;YOU&apos;RE GOING TO JAIL.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>goingToJail</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>s5</name>
+        <label>s5</label>
+        <locationX>666</locationX>
+        <locationY>2582</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Pay_Rent</targetReference>
+        </connector>
+        <fields>
+            <name>dt6</name>
+            <fieldText>&lt;p&gt;You landed on [PROPERTY] that is owned by [OWNER]. You owe [OWNER] [MONEY].&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
     <start>
-        <locationX>56</locationX>
+        <locationX>276</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Load_Turn</targetReference>
@@ -190,10 +904,65 @@
     </start>
     <status>Draft</status>
     <subflows>
+        <name>Eval_Monopoly</name>
+        <label>Eval Monopoly</label>
+        <locationX>270</locationX>
+        <locationY>3494</locationY>
+        <connector>
+            <targetReference>Get_Next_Player</targetReference>
+        </connector>
+        <flowName>Evaluate_Game_Property_Monopoly</flowName>
+        <inputAssignments>
+            <name>receivedGameProperty</name>
+            <value>
+                <elementReference>Load_Game_Property_by_Position</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <subflows>
+        <name>Get_Next_Player</name>
+        <label>Get Next Player</label>
+        <locationX>402</locationX>
+        <locationY>3710</locationY>
+        <connector>
+            <targetReference>End_Turn_Decisions</targetReference>
+        </connector>
+        <flowName>Get_Next_Player</flowName>
+        <inputAssignments>
+            <name>currentPlayer</name>
+            <value>
+                <elementReference>player</elementReference>
+            </value>
+        </inputAssignments>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </subflows>
+    <subflows>
+        <name>Pay_Rent</name>
+        <label>Pay Rent</label>
+        <locationX>666</locationX>
+        <locationY>2702</locationY>
+        <connector>
+            <targetReference>Uncheck_Current_Turn</targetReference>
+        </connector>
+        <flowName>Pay_Rent</flowName>
+        <inputAssignments>
+            <name>gameProperty</name>
+            <value>
+                <elementReference>Load_Game_Property_by_Position</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>player</name>
+            <value>
+                <elementReference>player</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <subflows>
         <name>Roll_Dice_1</name>
         <label>Roll Dice 1</label>
-        <locationX>182</locationX>
-        <locationY>398</locationY>
+        <locationX>402</locationX>
+        <locationY>638</locationY>
         <connector>
             <targetReference>Roll_Dice_2</targetReference>
         </connector>
@@ -209,8 +978,8 @@
     <subflows>
         <name>Roll_Dice_2</name>
         <label>Roll Dice 2</label>
-        <locationX>182</locationX>
-        <locationY>518</locationY>
+        <locationX>402</locationX>
+        <locationY>758</locationY>
         <connector>
             <targetReference>Set_Roll_Results</targetReference>
         </connector>
@@ -223,6 +992,14 @@
         </inputAssignments>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </subflows>
+    <variables>
+        <name>player</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Player__c</objectType>
+    </variables>
     <variables>
         <name>position</name>
         <dataType>Number</dataType>

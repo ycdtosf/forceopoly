@@ -36,11 +36,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>ActivePlayer__c</field>
+                <field>FreeParkingBank__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FreeParkingBank__c</field>
+                <field>CurrentTurn__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

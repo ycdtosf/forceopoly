@@ -3,4 +3,43 @@
     <fullName>CommunityChest</fullName>
     <active>true</active>
     <label>Community Chest</label>
+    <picklistValues>
+        <picklist>ActionType__c</picklist>
+        <values>
+            <fullName>Get Out of Jail</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Money from Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Money from Players</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Money to Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Money to Players</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Move X Spaces</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Move to Nearest Railroad</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Move to Nearest Utility</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Move to Property</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
 </RecordType>

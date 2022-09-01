@@ -1,0 +1,9 @@
+<template>
+    <template if:true={gameProperties}>
+        <template for:each={gameProperties} for:item="gp">
+            <div key={gp.Id} style="width: 400px; float: left;">
+                <c-property property-record={gp.Property__r}></c-property>
+            </div>
+        </template>
+    </template>
+</template>

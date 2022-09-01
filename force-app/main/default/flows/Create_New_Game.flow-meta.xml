@@ -224,6 +224,7 @@
             <label>Yes</label>
         </rules>
     </decisions>
+    <description>V2 - refactored Get Next Player to Subflow</description>
     <dynamicChoiceSets>
         <name>userChoices</name>
         <dataType>String</dataType>
@@ -302,7 +303,7 @@
         <inputAssignments>
             <field>Player__c</field>
             <value>
-                <elementReference>Get_First_Player.Id</elementReference>
+                <elementReference>Get_Next_Player.nextPlayer.Id</elementReference>
             </value>
         </inputAssignments>
         <object>Turn__c</object>
@@ -331,7 +332,7 @@
         <locationX>176</locationX>
         <locationY>2222</locationY>
         <connector>
-            <targetReference>Get_First_Player</targetReference>
+            <targetReference>Get_Next_Player</targetReference>
         </connector>
         <inputReference>newGamePropertiesCollection</inputReference>
     </recordCreates>
@@ -345,29 +346,6 @@
         </connector>
         <inputReference>newPlayerCollection</inputReference>
     </recordCreates>
-    <recordLookups>
-        <name>Get_First_Player</name>
-        <label>Get First Player</label>
-        <locationX>176</locationX>
-        <locationY>2342</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Insert_First_Turn</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Game__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>Insert_Game</elementReference>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>Player__c</object>
-        <sortField>Sequence__c</sortField>
-        <sortOrder>Asc</sortOrder>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
     <recordLookups>
         <name>Get_Properties</name>
         <label>Get Properties</label>
@@ -508,6 +486,23 @@
         </connector>
     </start>
     <status>Active</status>
+    <subflows>
+        <name>Get_Next_Player</name>
+        <label>Get Next Player</label>
+        <locationX>176</locationX>
+        <locationY>2342</locationY>
+        <connector>
+            <targetReference>Insert_First_Turn</targetReference>
+        </connector>
+        <flowName>Get_Next_Player</flowName>
+        <inputAssignments>
+            <name>gameId</name>
+            <value>
+                <elementReference>Insert_Game</elementReference>
+            </value>
+        </inputAssignments>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </subflows>
     <variables>
         <name>newGamePropertiesCollection</name>
         <dataType>SObject</dataType>

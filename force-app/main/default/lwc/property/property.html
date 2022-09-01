@@ -1,0 +1,25 @@
+<template>
+    <template if:true={propertyRecord}>
+        <div class="card">
+            <div class="title" style={titleStyle}>
+                <div class="dt">DEED TITLE</div>
+                <div class="property-name">{propertyRecord.Name}</div>
+            </div>
+            <div class="body">
+                <div>RENT ${propertyRecord.PropertyCost__c}.</div>
+                <div>
+                    <table>
+                        <tr><td>With 1 House</td><td>${propertyRecord.RentHouse1__c}.</td></tr>
+                        <tr><td>With 2 Houses</td><td>${propertyRecord.RentHouse2__c}.</td></tr>
+                        <tr><td>With 3 Houses</td><td>${propertyRecord.RentHouse3__c}.</td></tr>
+                        <tr><td>With 4 Houses</td><td>${propertyRecord.RentHouse4__c}.</td></tr>
+                    </table>
+                </div>
+                <div>With HOTEL ${propertyRecord.RentHotel__c}.</div>
+                <div>Mortgage Value ${mortgageValue}.</div>
+                <div>Houses cost ${propertyRecord.BuildingCost__c}. each</div>
+                <div>Hotels, ${propertyRecord.BuildingCost__c}. plus 4 houses</div>
+            </div>
+        </div> 
+    </template>
+</template>

@@ -6,10 +6,12 @@ public class ApexFlow {
 
         for(Request r : requests) {
             Response res = new Response();
-            if(r.className.toLowerCase() == 'math') {
-                if(r.methodName.toLowerCase() == 'random') {
-                    res.decimalValue = Math.random();
-                }
+            String classAndMethod = r.className.toLowerCase() + '.' + r.methodName.toLowerCase();
+            if(classAndMethod == 'math.random') {
+                res.decimalValue = Math.random();
+            }
+            else if(classAndMethod == 'string.split') {
+                res.stringValues = r.input.split(r.param1);
             }
             responses.add(res);
         }
@@ -31,7 +33,16 @@ public class ApexFlow {
 
     public class Response {
         @InvocableVariable public String stringValue;
+        @InvocableVariable public String[] stringValues;
         @InvocableVariable public Decimal decimalValue;
     }
 
+    /*
+
+    abc = A,B,C
+    className = String
+    methodName = Split
+    input = abc
+    param1 = ','
+    */
 }
