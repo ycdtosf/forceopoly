@@ -1,0 +1,13 @@
+<template>
+    <template if:true={propertyRecord}>
+        <div class="card">
+            <div class="color-box"></div>
+            <div class="name">
+                <div class="slds-align_absolute-center" style="height: 100%;">{propertyRecord.Name}</div>
+            </div>
+            <div class="cost">
+                <div class="slds-align_absolute-center" style="height: 100%;">${propertyRecord.PropertyCost__c}</div>
+            </div>
+        </div> 
+    </template>
+</template>

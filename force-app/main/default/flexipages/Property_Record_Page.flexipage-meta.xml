@@ -124,6 +124,12 @@
                 <identifier>c_property</identifier>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>propertyBoardSpace</componentName>
+                <identifier>c_propertyBoardSpace</identifier>
+            </componentInstance>
+        </itemInstances>
         <mode>Replace</mode>
         <name>sidebar</name>
         <type>Region</type>

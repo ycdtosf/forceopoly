@@ -43,6 +43,6 @@ Chance Cards
 
 Next Time:
 
-> Build "Board Step" LWC
+> Build "Board Space" LWC
 > "New Game" = Flow
 

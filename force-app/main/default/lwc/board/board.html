@@ -1,8 +1,8 @@
 <template>
     <template if:true={gameProperties}>
         <template for:each={gameProperties} for:item="gp">
-            <div key={gp.Id} style="width: 400px; float: left;">
-                <c-property property-record={gp.Property__r}></c-property>
+            <div key={gp.Id} style="float: left;">
+                <c-property-board-space property-record={gp.Property__r}></c-property-board-space>
             </div>
         </template>
     </template>
