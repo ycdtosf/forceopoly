@@ -5,6 +5,9 @@ export default class PropertyBoardSpace extends LightningElement {
 
     @api recordId;
     @api propertyRecord;
+    @api height = 250;
+    @api width = 200;
+    @api rotate = 0;
     inited = false;
     titleStyle = '';
 

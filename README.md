@@ -43,6 +43,5 @@ Chance Cards
 
 Next Time:
 
-> Build "Board Space" LWC
 > "New Game" = Flow
-
+> <canvas> + LWC?

@@ -1,8 +1,15 @@
 <template>
-    <template if:true={gameProperties}>
-        <template for:each={gameProperties} for:item="gp">
-            <div key={gp.Id} style="float: left;">
-                <c-property-board-space property-record={gp.Property__r}></c-property-board-space>
+    <template if:true={gamePropertiesGrid}>
+        <template for:each={gamePropertiesGrid} for:item="row">
+            <div key={row.index} class="slds-grid">
+                <template for:each={row} for:item="col">
+                    <div key={col.index} class="slds-col">
+                        <template if:false={col.renderSpace}>{col.type}</template>
+                        <template if:true={col.renderSpace}>
+                            <c-property-board-space property-record={col.property}></c-property-board-space>
+                        </template>
+                    </div>
+                </template>
             </div>
         </template>
     </template>
