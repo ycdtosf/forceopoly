@@ -45,3 +45,46 @@ Next Time:
 
 > "New Game" = Flow
 > <canvas> + LWC?
+
+# INVENTORY
+
+* Flow (Screen) - Create New Game - creates a new game
+* Flow (Subflow) - Get Next Player
+* Flow (Subflow) - Pay Rent - subtract Money from one Player, add Money to another Player
+* Flow (Subflow) - Roll - math.random, pass in "sides", returns "value" - weird flow looping stuff
+* Flow (Subflow) - Shuffle Game Cards - creates a new shuffled deck of chance or comm chest cards
+* Flow (Subflow) - Evaluate Game Property Monopoly - determines if player is owner of all properties in a color set
+* Flow - Take Run - 
+    * takes Turn SFID as input parameter
+
+
+# BUGS
+
+* Create New Game created one full game and one empty
+* does card shuffle take away get out of jail card?
+* Create New Game needs to check "Current Turn" box on first turn
+* Take Turn should query where = "Current Turn" = true OR userId (new param) = Player related to current turn
+* Take Turn - what does Eval Monopoly do???
+* Take Turn - Get Next Player - pass GameId... or... get from player record???
+* Take Turn - populate merge fields
+* Take Turn - Game Property Property Color is nul???
+* Take Turn - we bought chance??????
+* Take Turn - set the current player on the next turn...
+
+* Take Turn Phases
+    * Evaluate Roll Phase
+    * Position Land Phase
+        * Free Parking
+        * Go To Jail
+        * Just Visiting
+        * Land On Go
+        * Pass Go
+    * Evaluate Property Phase
+        * Purchase
+        * Auction
+        * Pay Rent
+    * Evaluate Cards Phase
+        * Purchase
+        * Auction
+        * Pay Rent
+    * End Turn Phase

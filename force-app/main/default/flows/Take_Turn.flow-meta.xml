@@ -333,6 +333,13 @@
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>Load_Game_Property_by_Position.Property__r.RecordType.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Property</stringValue>
+                </rightValue>
+            </conditions>
             <connector>
                 <targetReference>s2</targetReference>
             </connector>
@@ -348,6 +355,13 @@
                     <elementReference>Load_Turn.Player__c</elementReference>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>Load_Game_Property_by_Position.Property__r.RecordType.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Property</stringValue>
+                </rightValue>
+            </conditions>
             <connector>
                 <targetReference>Uncheck_Current_Turn</targetReference>
             </connector>
@@ -361,6 +375,13 @@
                 <operator>NotEqualTo</operator>
                 <rightValue>
                     <elementReference>Load_Turn.Player__c</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Load_Game_Property_by_Position.Property__r.RecordType.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Property</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -934,6 +955,12 @@
                 <elementReference>player</elementReference>
             </value>
         </inputAssignments>
+        <inputAssignments>
+            <name>gameId</name>
+            <value>
+                <elementReference>Load_Turn.Game__c</elementReference>
+            </value>
+        </inputAssignments>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </subflows>
     <subflows>
@@ -1012,7 +1039,7 @@
         <name>recordId</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
-        <isInput>false</isInput>
+        <isInput>true</isInput>
         <isOutput>false</isOutput>
     </variables>
 </Flow>

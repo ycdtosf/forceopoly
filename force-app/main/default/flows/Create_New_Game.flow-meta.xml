@@ -224,7 +224,8 @@
             <label>Yes</label>
         </rules>
     </decisions>
-    <description>V2 - refactored Get Next Player to Subflow</description>
+    <description>2022-09-29 - checked &quot;Is Current Turn&quot; field
+V2 - refactored Get Next Player to Subflow</description>
     <dynamicChoiceSets>
         <name>userChoices</name>
         <dataType>String</dataType>
@@ -298,6 +299,12 @@
             <field>Game__c</field>
             <value>
                 <elementReference>Insert_Game</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>IsCurrentTurn__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
             </value>
         </inputAssignments>
         <inputAssignments>
