@@ -1,50 +1,114 @@
 # Forceopoly
 
-Object Model
+## Components
 
-> Property X
-> Game Property X
-> Card X
-> Player X
-> Dice
-> Transaction?
-> Game X
+### Custom Objects
 
-Future Stuff
-> Color Picker Component
-> Build Salesforce in salesforce
+#### Card
 
+Represents Chance and Community Cards in Forceopoly.
 
-Chance Cards
-    > Move to [Specific Property / Go To Jail]
-    > Move to Nearest/Relative [Railroad / Utility / Back X Spaces]
-    > Get Money from Bank
-    > Get Money from Players
-    > Pay Money to "Bank" (Free Parking)
-    > Pay Players
-    > Get Out of Jail
+**Fields**
+
+* Action Type (picklist) - The different actions that result from picking a Card.
+* Amount (currency) - Value / cost associated with the Card.
+* Description - The text displayed on the Card.
+* Property - Property associated with a Card action (ex. move to Broadway).
+* Record Type - "Chance" and "Community Chest"
+* Spaces - Number of spaces to move associated with a Card action.
+
+#### Game
+
+Represents an instance of a Forceopoly game.
+
+**Fields**
+
+* Free Parking Bank (currency) - Money given to Free Parking (if rule is enabled).
+* Hotels Available (currency) - Value / cost associated with the Card.
+* Hotels Available (formula) - Hotels Total minus Hotels Purchased.
+* Hotels Purchased (rollup) - sum of Hotels on all Game Properties.
+* Hotels Total (number) - Total number of hotels in a Forceopoly game.
+* Houses Available (formula) - Houses Total minus Hotels Purchased.
+* Houses Purchased (rollup) - sum of Houses on all Game Properties.
+* Houses Total (number) - Total number of Houses in a Forceopoly game.
+
+#### Game Card
+
+Represents an instance of a Card in a Game.
+
+**Fields**
+
+* Card (lookup) - Lookup to the Card definition.
+* Game (MD) - Lookup to the Game.
+* Is Discarded? (Boolean) - Indicates if Card has been played.
+* Owner (Lookup) - Player holding the card.
+* Sequence (number) - How the card deck is shuffled.
+
+#### Game Property
+
+Represents an instance of a Card in a Game.
+
+**Fields**
+
+* Card (lookup) - Lookup to the Card definition.
+* Game (MD) - Lookup to the Game.
+* Hotel (number) - number of Hotels on the property.
+* Houses (number) - number of Houses on the property.
+* Is Monopoly? (Boolean) - indicates Owner has all properties in set/color.
+* Is Mortgaged? (Boolean) - property is mortgaged.
+* Owner (Lookup) - Player owning the Property.
+* Property (MD) - Property definition record.
+* Property Color (formula)
+* Property Position (formula)
+* Rent (formula)
+
+#### Player
+
+Represents a Player in a Forceopoly Game.
+
+**Fields**
+
+* Current Property (lookup) - Indicates the current location of the Play on the Game board.
+* Game (rollup) - the Game being played.
+* In Jail? (Boolean) - Indicates the Player is In Jail.
+* Money (currency) - Money on hand.
+* Hotels Total (number) - Total number of hotels in a Forceopoly game.
+* Piece (Picklist) - the piece that represents the Player.
+* Sequence (number) - Defines the turn sequence of the players.
+* User (lookup) - The User represented by this Player.
+
+#### Property
+
+Represents a Property card in a Forceopoly game.
+
+* Building Cost (currency) - How much to build a single building (house or hotel).
+* Color (text) - property set color
+* Position (number) - Property placement around the board.
+* Property Cost (currency) - Purchase price.
+* Rent - base rent
+* Rent (1 House) - rent for 1 house
+* Rent (2 House) - rent for 2 house
+* Rent (3 House) - rent for 3 house
+* Rent (4 House) - rent for 4 house
+* Rent (Hotel) - rent for hotel
+* Type (text) - type of property
+
+#### Turn
+
+Represents a Player's Turn in a Forceopoly game.
+
+* Current Turn (Boolean) - is this turn the current turn?
+* Game (MD) - the Game being played.
+* Game Property (lookup) - final landed Property of Turn.
+* Outcome (picklist) - possible outcomes of a Turn (there may be more...)
+* Player (MD) - The Player taking the turn.
+* Previous Player Turn (lookup) - The previous turn of this Player (change to Player's Previous Turn
+* Previous Turn (lookup) - The Turn before this Turn
+* Roll (number) - dice roll outcome.
+* Roll Double? (Boolean) - did the player roll doubles?
+
 
     B_Rye64: You could have actions be flows specified on cards/properties that take in the entire game state and mutate it (ex. Pay bank money = subtract money from player, add to bank), with dynamic variables coming from the cause (chance card, tax, etc)
-
-    B_Rye64: The compact layout could be the scoreboard / standings, users can peek on other peoples games and see whos winning
-
-    B_Rye64: Should game store active player and then formula on player to check against the game?
-
-# Turn Effects
-
-> Buy (if not owned) DONE
-> Pay Rent (if owned)
-> Go To Jail DONE
-> Get Paid on Land Go DONE
-> Get Paid on Pass Go DONE
-> Get Paid on Free Parking
-> Draw Card
-> Stay in Jail
-
-Next Time:
-
-> "New Game" = Flow
-> <canvas> + LWC?
 
 # INVENTORY
 
@@ -56,7 +120,6 @@ Next Time:
 * Flow (Subflow) - Evaluate Game Property Monopoly - determines if player is owner of all properties in a color set
 * Flow - Take Run - 
     * takes Turn SFID as input parameter
-
 
 # BUGS
 

@@ -13,3 +13,6 @@ package.xml
 
 **/appMenus
 **/profiles
+**/tsconfig.json
+
+**/*.ts
