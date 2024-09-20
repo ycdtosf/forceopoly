@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Action__c</fullName>
+    <description>The different actions that result from picking a Card.</description>
+    <externalId>false</externalId>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <inlineHelpText>The different actions that result from picking a Card.</inlineHelpText>
+    <label>Action</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Get Out of Jail</fullName>
+                <default>false</default>
+                <label>Get Out of Jail</label>
+            </value>
+            <value>
+                <fullName>Money from Bank</fullName>
+                <default>false</default>
+                <label>Money from Bank</label>
+            </value>
+            <value>
+                <fullName>Money from Players</fullName>
+                <default>false</default>
+                <label>Money from Players</label>
+            </value>
+            <value>
+                <fullName>Money to Bank</fullName>
+                <default>false</default>
+                <label>Money to Bank</label>
+            </value>
+            <value>
+                <fullName>Money to Players</fullName>
+                <default>false</default>
+                <label>Money to Players</label>
+            </value>
+            <value>
+                <fullName>Move to Nearest Railroad</fullName>
+                <default>false</default>
+                <label>Move to Nearest Railroad</label>
+            </value>
+            <value>
+                <fullName>Move to Nearest Utility</fullName>
+                <default>false</default>
+                <label>Move to Nearest Utility</label>
+            </value>
+            <value>
+                <fullName>Move to Property</fullName>
+                <default>false</default>
+                <label>Move to Property</label>
+            </value>
+            <value>
+                <fullName>Move X Spaces</fullName>
+                <default>false</default>
+                <label>Move X Spaces</label>
+            </value>
+            <value>
+                <fullName>Repair</fullName>
+                <default>false</default>
+                <label>Repair</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

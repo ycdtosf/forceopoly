@@ -95,6 +95,16 @@ Represents a Property card in a Forceopoly game.
 
 #### Turn
 
+### Flows
+
+#### Create New Game
+
+* 
+
+## Resources
+
+* https://monopoly.fandom.com/wiki/Property#US_version
+
 Represents a Player's Turn in a Forceopoly game.
 
 * Current Turn (Boolean) - is this turn the current turn?

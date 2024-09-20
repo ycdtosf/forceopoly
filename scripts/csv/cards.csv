@@ -1,0 +1,33 @@
+Action__c,Amount__c,Name,Description__c,Property__c,Spaces__c,Type__c
+Move to Property,200,Go (1),"Advance to ""Go"".",Go,,Chance
+Move to Property,,Illinois Ave.,Advance to Illinois Ave.,Illinois_Avenue,,Chance
+Move to Property,,St. Charles Place,Advance to St. Charles Place.,St_Charles_Place,,Chance
+Move to Nearest Utility,,Nearest Utility,Advance token to the nearest Utility.,,,Chance
+Move to Nearest Railroad,,Nearest Railroad,Advance to the nearest Railroad.,,,Chance
+Money from Bank,50,Dividend,Bank pays you dividend of $50.,,,Chance
+Get Out of Jail,,Out of Jail (1),Get out of Jail Free.,,,Chance
+Move X Spaces,,Back Three Spaces,Go Back Three Spaces.,,-3,Chance
+Move to Property,,Jail (1),Go to Jail. ,Jail,,Chance
+Repair,,Property Repairs (1),"Make general repairs on all your property: For each house pay $25, For each hotel $100.",,,Chance
+Move to Property,,Reading Railroad,Take a trip to Reading Railroad.,Reading_Railroad,,Chance
+Money to Bank,-15,Poor Tax,Pay Poor Tax of $15.,,,Chance
+Move to Property,,Boardwalk,Take a walk on the Boardwalk.,Boardwalk,,Chance
+Money to Players,,Chairman of the Board,You have been elected Chairman of the Board. Pay each player $50.,,,Chance
+Money from Bank,150,Building Loan Matures,Your building loan matures. Collect $150.,,,Chance
+Move to Property,200,Go (2),"Advance to ""Go"".",Go,,Community Chest
+Money from Bank,200,Bank Error,Bank error in your favor. Collect $200.,,,Community Chest
+Money to Bank,-50,Doctor Fees,Doctor's fees. Pay $50.,,,Community Chest
+Money from Bank,50,Stock Sale,From sale of stock you get $50.,,,Community Chest
+Get Out of Jail,,Out of Jail (2),Get Out of Jail Free.,,,Community Chest
+Move to Property,,Jail (2),Go to Jail. ,Jail,,Community Chest
+Money from Players,,Opera Night,Grand Opera Night. Collect $50 from every player for opening night seats. ,,,Community Chest
+Money from Bank,100,Holiday Fund,Holiday Fund matures. Receive $100.,,,Community Chest
+Money from Bank,20,Income Tax Refund,Income tax refund. Collect $20.,,,Community Chest
+Money from Players,,Birthday,It is your birthday. Collect $10 from every player.,,,Community Chest
+Money from Bank,100,Life Insurance,Life insurance matures. Collect $100.,,,Community Chest
+Money to Bank,-50,Hospital Fees,Hospital Fees. Pay $50.,,,Community Chest
+Money to Bank,-50,School Fees,School fees. Pay $50. ,,,Community Chest
+Money from Bank,25,Consultancy Fee,Receive $25 consultancy fee.,,,Community Chest
+Repair,,Property Repairs (2),You are assessed for street repairs: Pay $40 per house and $115 per hotel you own.,,,Community Chest
+Money from Bank,10,Beauty Context,You have won second prize in a beauty contest. Collect $10. ,,,Community Chest
+Money from Bank,100,Inherit,You inherit $100. ,,,Community Chest

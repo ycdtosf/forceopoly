@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <defaultValue>&quot;Property&quot;</defaultValue>
+    <externalId>false</externalId>
+    <label>Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Chance</fullName>
+                <default>true</default>
+                <label>Chance</label>
+            </value>
+            <value>
+                <fullName>Community Chest</fullName>
+                <default>false</default>
+                <label>Community Chest</label>
+            </value>
+            <value>
+                <fullName>Free Parking</fullName>
+                <default>false</default>
+                <label>Free Parking</label>
+            </value>
+            <value>
+                <fullName>Go To Jail</fullName>
+                <default>false</default>
+                <label>Go To Jail</label>
+            </value>
+            <value>
+                <fullName>Jail</fullName>
+                <default>false</default>
+                <label>Jail</label>
+            </value>
+            <value>
+                <fullName>Property</fullName>
+                <default>false</default>
+                <label>Property</label>
+            </value>
+            <value>
+                <fullName>Railroad</fullName>
+                <default>false</default>
+                <label>Railroad</label>
+            </value>
+            <value>
+                <fullName>Tax</fullName>
+                <default>false</default>
+                <label>Tax</label>
+            </value>
+            <value>
+                <fullName>Utility</fullName>
+                <default>false</default>
+                <label>Utility</label>
+            </value>
+            <value>
+                <fullName>Go</fullName>
+                <default>false</default>
+                <label>Go</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

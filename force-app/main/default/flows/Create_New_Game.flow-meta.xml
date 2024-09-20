@@ -1,27 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>55.0</apiVersion>
-    <assignments>
-        <name>Add_Game_Property_to_Collection</name>
-        <label>Add Game Property to Collection</label>
+    <actionCalls>
+        <name>Get_Random_Number_for_Sequence</name>
+        <label>Get Random Number for Sequence</label>
         <locationX>264</locationX>
-        <locationY>2006</locationY>
-        <assignmentItems>
-            <assignToReference>newGamePropertiesCollection</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>newGameProperty</elementReference>
-            </value>
-        </assignmentItems>
+        <locationY>458</locationY>
+        <actionName>Inv_GetRandomNumber</actionName>
+        <actionType>apex</actionType>
         <connector>
-            <targetReference>Loop_Properties</targetReference>
+            <targetReference>Init_New_Player</targetReference>
         </connector>
-    </assignments>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <apiVersion>55.0</apiVersion>
     <assignments>
         <name>Add_Player_to_Collection</name>
         <label>Add Player to Collection</label>
-        <locationX>528</locationX>
-        <locationY>1214</locationY>
+        <locationX>264</locationX>
+        <locationY>674</locationY>
         <assignmentItems>
             <assignToReference>newPlayerCollection</assignToReference>
             <operator>Add</operator>
@@ -30,49 +27,26 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Loop_Player_Count</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Init_Game_Property</name>
-        <label>Init Game Property</label>
-        <locationX>264</locationX>
-        <locationY>1886</locationY>
-        <assignmentItems>
-            <assignToReference>newGameProperty.Game__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Insert_Game</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>newGameProperty.Property__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Loop_Properties.Id</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Add_Game_Property_to_Collection</targetReference>
+            <targetReference>Loop_New_Players</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>Init_New_Player</name>
         <label>Init New Player</label>
-        <locationX>528</locationX>
-        <locationY>1094</locationY>
+        <locationX>264</locationX>
+        <locationY>566</locationY>
         <assignmentItems>
             <assignToReference>newPlayer.User__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>userLookup_0.recordId</elementReference>
+                <elementReference>Loop_New_Players.playerLookup.recordId</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>newPlayer.Sequence__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Loop_Player_Count</elementReference>
+                <elementReference>Get_Random_Number_for_Sequence</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -86,145 +60,8 @@
             <targetReference>Add_Player_to_Collection</targetReference>
         </connector>
     </assignments>
-    <assignments>
-        <name>Load_Player_Slots</name>
-        <label>Load Player Slots</label>
-        <locationX>176</locationX>
-        <locationY>278</locationY>
-        <assignmentItems>
-            <assignToReference>playerSlots</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <numberValue>1.0</numberValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>playerSlots</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <numberValue>2.0</numberValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>playerSlots</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <numberValue>3.0</numberValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>playerSlots</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <numberValue>4.0</numberValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>playerSlots</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <numberValue>5.0</numberValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>playerSlots</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <numberValue>6.0</numberValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>playerSlots</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <numberValue>7.0</numberValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>playerSlots</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <numberValue>8.0</numberValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>s3</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Set_No_More_Players_Short_Circuit</name>
-        <label>Set No More Players Short Circuit</label>
-        <locationX>264</locationX>
-        <locationY>1094</locationY>
-        <assignmentItems>
-            <assignToReference>noMorePlayersShortCircuit</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Loop_Player_Count</targetReference>
-        </connector>
-    </assignments>
-    <decisions>
-        <name>No_More_Players</name>
-        <label>No More Players?</label>
-        <locationX>396</locationX>
-        <locationY>974</locationY>
-        <defaultConnector>
-            <targetReference>Init_New_Player</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>No_More_Players_Yes</name>
-            <conditionLogic>or</conditionLogic>
-            <conditions>
-                <leftValueReference>No_more_players_please</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>noMorePlayersShortCircuit</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Set_No_More_Players_Short_Circuit</targetReference>
-            </connector>
-            <label>Yes</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>No_More_Players_Before</name>
-        <label>No More Players (Before)</label>
-        <locationX>396</locationX>
-        <locationY>638</locationY>
-        <defaultConnector>
-            <targetReference>s1_0</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>No_More_Players_Before_Yes</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>noMorePlayersShortCircuit</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>No_More_Players</targetReference>
-            </connector>
-            <label>Yes</label>
-        </rules>
-    </decisions>
-    <description>2022-09-29 - checked &quot;Is Current Turn&quot; field
+    <description>2024-09-20 - convert properties to CMD and reference subflow to create game properties
+2022-09-29 - checked &quot;Is Current Turn&quot; field
 V2 - refactored Get Next Player to Subflow</description>
     <dynamicChoiceSets>
         <name>userChoices</name>
@@ -244,31 +81,17 @@ V2 - refactored Get Next Player to Subflow</description>
     <interviewLabel>Create New Game {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Create New Game</label>
     <loops>
-        <name>Loop_Player_Count</name>
-        <label>Loop Player Count</label>
+        <name>Loop_New_Players</name>
+        <label>Loop New Players</label>
         <locationX>176</locationX>
-        <locationY>518</locationY>
-        <collectionReference>playerSlots</collectionReference>
+        <locationY>350</locationY>
+        <collectionReference>newPlayerRepeater.AllItems</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
-            <targetReference>No_More_Players_Before</targetReference>
+            <targetReference>Get_Random_Number_for_Sequence</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
             <targetReference>Insert_Players</targetReference>
-        </noMoreValuesConnector>
-    </loops>
-    <loops>
-        <name>Loop_Properties</name>
-        <label>Loop Properties</label>
-        <locationX>176</locationX>
-        <locationY>1766</locationY>
-        <collectionReference>Get_Properties</collectionReference>
-        <iterationOrder>Asc</iterationOrder>
-        <nextValueConnector>
-            <targetReference>Init_Game_Property</targetReference>
-        </nextValueConnector>
-        <noMoreValuesConnector>
-            <targetReference>Insert_Game_Properties</targetReference>
         </noMoreValuesConnector>
     </loops>
     <processMetadataValues>
@@ -294,7 +117,7 @@ V2 - refactored Get Next Player to Subflow</description>
         <name>Insert_First_Turn</name>
         <label>Insert First Turn</label>
         <locationX>176</locationX>
-        <locationY>2462</locationY>
+        <locationY>1298</locationY>
         <inputAssignments>
             <field>Game__c</field>
             <value>
@@ -320,9 +143,9 @@ V2 - refactored Get Next Player to Subflow</description>
         <name>Insert_Game</name>
         <label>Insert Game</label>
         <locationX>176</locationX>
-        <locationY>158</locationY>
+        <locationY>134</locationY>
         <connector>
-            <targetReference>Load_Player_Slots</targetReference>
+            <targetReference>s3</targetReference>
         </connector>
         <inputAssignments>
             <field>OwnerId</field>
@@ -334,153 +157,67 @@ V2 - refactored Get Next Player to Subflow</description>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordCreates>
-        <name>Insert_Game_Properties</name>
-        <label>Insert Game Properties</label>
-        <locationX>176</locationX>
-        <locationY>2222</locationY>
-        <connector>
-            <targetReference>Get_Next_Player</targetReference>
-        </connector>
-        <inputReference>newGamePropertiesCollection</inputReference>
-    </recordCreates>
-    <recordCreates>
         <name>Insert_Players</name>
         <label>Insert Players</label>
         <locationX>176</locationX>
-        <locationY>1526</locationY>
+        <locationY>866</locationY>
         <connector>
-            <targetReference>Get_Properties</targetReference>
+            <targetReference>Insert_Game_Properties2</targetReference>
         </connector>
         <inputReference>newPlayerCollection</inputReference>
     </recordCreates>
-    <recordLookups>
-        <name>Get_Properties</name>
-        <label>Get Properties</label>
-        <locationX>176</locationX>
-        <locationY>1646</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Loop_Properties</targetReference>
-        </connector>
-        <getFirstRecordOnly>false</getFirstRecordOnly>
-        <object>Property__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <screens>
-        <name>s1_0</name>
-        <label>s1</label>
-        <locationX>484</locationX>
-        <locationY>758</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <connector>
-            <targetReference>No_More_Players</targetReference>
-        </connector>
-        <fields>
-            <name>dt1_0</name>
-            <fieldText>&lt;p&gt;PICK YER PLAYERS.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;SELECT PLAYER {!Loop_Player_Count}&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>No_more_players_please</name>
-            <dataType>Boolean</dataType>
-            <fieldText>No more players, please.</fieldText>
-            <fieldType>InputField</fieldType>
-            <isRequired>true</isRequired>
-            <visibilityRule>
-                <conditionLogic>and</conditionLogic>
-                <conditions>
-                    <leftValueReference>Loop_Player_Count</leftValueReference>
-                    <operator>GreaterThan</operator>
-                    <rightValue>
-                        <numberValue>2.0</numberValue>
-                    </rightValue>
-                </conditions>
-            </visibilityRule>
-        </fields>
-        <fields>
-            <name>s1_0_Section1</name>
-            <fieldType>RegionContainer</fieldType>
-            <fields>
-                <name>s1_0_Section1_Column1</name>
-                <fieldType>Region</fieldType>
-                <fields>
-                    <name>userLookup_0</name>
-                    <extensionName>flowruntime:lookup</extensionName>
-                    <fieldType>ComponentInstance</fieldType>
-                    <inputParameters>
-                        <name>label</name>
-                        <value>
-                            <stringValue>Select a User to Play...</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>objectApiName</name>
-                        <value>
-                            <stringValue>Player__c</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>fieldApiName</name>
-                        <value>
-                            <stringValue>User__c</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-                    <isRequired>true</isRequired>
-                    <storeOutputAutomatically>true</storeOutputAutomatically>
-                </fields>
-                <fields>
-                    <fieldType>ObjectProvided</fieldType>
-                    <isRequired>false</isRequired>
-                    <objectFieldReference>newPlayer.Piece__c</objectFieldReference>
-                </fields>
-                <inputParameters>
-                    <name>width</name>
-                    <value>
-                        <stringValue>12</stringValue>
-                    </value>
-                </inputParameters>
-                <isRequired>false</isRequired>
-            </fields>
-            <isRequired>false</isRequired>
-            <visibilityRule>
-                <conditionLogic>or</conditionLogic>
-                <conditions>
-                    <leftValueReference>No_more_players_please</leftValueReference>
-                    <operator>EqualTo</operator>
-                    <rightValue>
-                        <booleanValue>false</booleanValue>
-                    </rightValue>
-                </conditions>
-                <conditions>
-                    <leftValueReference>Loop_Player_Count</leftValueReference>
-                    <operator>LessThanOrEqualTo</operator>
-                    <rightValue>
-                        <numberValue>2.0</numberValue>
-                    </rightValue>
-                </conditions>
-            </visibilityRule>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
     <screens>
         <name>s3</name>
         <label>s3</label>
         <locationX>176</locationX>
-        <locationY>398</locationY>
+        <locationY>242</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <connector>
-            <targetReference>Loop_Player_Count</targetReference>
+            <targetReference>Loop_New_Players</targetReference>
         </connector>
         <fields>
             <name>dt3</name>
             <fieldText>&lt;p&gt;WELCOME TO FORCEOPOLY.&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>newPlayerRepeater</name>
+            <fieldType>Repeater</fieldType>
+            <fields>
+                <name>playerLookup</name>
+                <extensionName>flowruntime:lookup</extensionName>
+                <fieldType>ComponentInstance</fieldType>
+                <inputParameters>
+                    <name>fieldApiName</name>
+                    <value>
+                        <stringValue>User__c</stringValue>
+                    </value>
+                </inputParameters>
+                <inputParameters>
+                    <name>label</name>
+                    <value>
+                        <stringValue>Select Player User...</stringValue>
+                    </value>
+                </inputParameters>
+                <inputParameters>
+                    <name>objectApiName</name>
+                    <value>
+                        <stringValue>Player__c</stringValue>
+                    </value>
+                </inputParameters>
+                <inputParameters>
+                    <name>maxValues</name>
+                    <value>
+                        <numberValue>1.0</numberValue>
+                    </value>
+                </inputParameters>
+                <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                <isRequired>true</isRequired>
+                <storeOutputAutomatically>true</storeOutputAutomatically>
+            </fields>
+            <isRequired>false</isRequired>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
@@ -497,7 +234,7 @@ V2 - refactored Get Next Player to Subflow</description>
         <name>Get_Next_Player</name>
         <label>Get Next Player</label>
         <locationX>176</locationX>
-        <locationY>2342</locationY>
+        <locationY>1190</locationY>
         <connector>
             <targetReference>Insert_First_Turn</targetReference>
         </connector>
@@ -509,6 +246,38 @@ V2 - refactored Get Next Player to Subflow</description>
             </value>
         </inputAssignments>
         <storeOutputAutomatically>true</storeOutputAutomatically>
+    </subflows>
+    <subflows>
+        <name>Insert_Game_Cards</name>
+        <label>Insert Game Cards</label>
+        <locationX>176</locationX>
+        <locationY>1082</locationY>
+        <connector>
+            <targetReference>Get_Next_Player</targetReference>
+        </connector>
+        <flowName>Insert_Game_Cards</flowName>
+        <inputAssignments>
+            <name>gameId</name>
+            <value>
+                <elementReference>Insert_Game</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <subflows>
+        <name>Insert_Game_Properties2</name>
+        <label>Insert Game Properties</label>
+        <locationX>176</locationX>
+        <locationY>974</locationY>
+        <connector>
+            <targetReference>Insert_Game_Cards</targetReference>
+        </connector>
+        <flowName>Insert_Game_Properties</flowName>
+        <inputAssignments>
+            <name>gameId</name>
+            <value>
+                <elementReference>Insert_Game</elementReference>
+            </value>
+        </inputAssignments>
     </subflows>
     <variables>
         <name>newGamePropertiesCollection</name>

@@ -155,9 +155,8 @@
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>Game Property</label>
     <nameField>
-        <displayFormat>GP-{000000}</displayFormat>
         <label>Game Property Name</label>
-        <type>AutoNumber</type>
+        <type>Text</type>
     </nameField>
     <pluralLabel>Game Properties</pluralLabel>
     <searchLayouts></searchLayouts>

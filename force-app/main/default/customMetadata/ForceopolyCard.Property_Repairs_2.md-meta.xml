@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Property Repairs (2)</label>
+    <protected>false</protected>
+    <values>
+        <field>Action__c</field>
+        <value xsi:type="xsd:string">Repair</value>
+    </values>
+    <values>
+        <field>Description__c</field>
+        <value xsi:type="xsd:string">You are assessed for street repairs: Pay $40 per house and $115 per hotel you own.</value>
+    </values>
+    <values>
+        <field>Type__c</field>
+        <value xsi:type="xsd:string">Community Chest</value>
+    </values>
+</CustomMetadata>

@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Property__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
+    <description>Property associated with a Card action (ex. move to Broadway).</description>
     <externalId>false</externalId>
     <label>Property</label>
     <referenceTo>Property__c</referenceTo>

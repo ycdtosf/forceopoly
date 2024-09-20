@@ -7,7 +7,7 @@
         <label>Information</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Required</behavior>
                 <field>Name</field>
             </layoutItems>
             <layoutItems>
@@ -41,6 +41,14 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Rent__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Rent2__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>PropertyMetadataName__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns/>
@@ -77,6 +85,10 @@
     <relatedLists>
         <fields>NAME</fields>
         <relatedList>Player__c.CurrentProperty__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>GameCard__c.GameProperty__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

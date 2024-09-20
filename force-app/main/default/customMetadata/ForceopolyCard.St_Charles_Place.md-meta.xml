@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>St. Charles Place</label>
+    <protected>false</protected>
+    <values>
+        <field>Action__c</field>
+        <value xsi:type="xsd:string">Move to Property</value>
+    </values>
+    <values>
+        <field>Description__c</field>
+        <value xsi:type="xsd:string">Advance to St. Charles Place.</value>
+    </values>
+    <values>
+        <field>Property__c</field>
+        <value xsi:type="xsd:string">St_Charles_Place</value>
+    </values>
+    <values>
+        <field>Type__c</field>
+        <value xsi:type="xsd:string">Chance</value>
+    </values>
+</CustomMetadata>

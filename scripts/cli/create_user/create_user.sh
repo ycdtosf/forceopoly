@@ -1,0 +1,1 @@
+sfdx force:user:create --setalias U2 --definitionfile ./create_user.json

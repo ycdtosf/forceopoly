@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Get_Random_Number</name>
+        <label>Get Random Number</label>
+        <locationX>176</locationX>
+        <locationY>323</locationY>
+        <actionName>Inv_GetRandomNumber</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Set_Sequence_Field</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <apiVersion>61.0</apiVersion>
+    <description>Sets the Sequence field with a random number to &quot;shuffle&quot; the cards.</description>
+    <interviewLabel>Game Card : Set Sequence {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Game Card : Set Sequence</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Set_Sequence_Field</name>
+        <label>Set Sequence Field</label>
+        <locationX>176</locationX>
+        <locationY>431</locationY>
+        <inputAssignments>
+            <field>Sequence__c</field>
+            <value>
+                <elementReference>Get_Random_Number</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Random_Number</targetReference>
+        </connector>
+        <object>GameCard__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Ventnor Avenue</label>
+    <protected>false</protected>
+    <values>
+        <field>BuildingCost__c</field>
+        <value xsi:type="xsd:int">150</value>
+    </values>
+    <values>
+        <field>Color__c</field>
+        <value xsi:type="xsd:string">#FFFF00</value>
+    </values>
+    <values>
+        <field>Position__c</field>
+        <value xsi:type="xsd:int">27</value>
+    </values>
+    <values>
+        <field>PropertyCost__c</field>
+        <value xsi:type="xsd:int">260</value>
+    </values>
+    <values>
+        <field>RentHotel__c</field>
+        <value xsi:type="xsd:int">1150</value>
+    </values>
+    <values>
+        <field>RentHouse1__c</field>
+        <value xsi:type="xsd:int">110</value>
+    </values>
+    <values>
+        <field>RentHouse2__c</field>
+        <value xsi:type="xsd:int">330</value>
+    </values>
+    <values>
+        <field>RentHouse3__c</field>
+        <value xsi:type="xsd:int">800</value>
+    </values>
+    <values>
+        <field>RentHouse4__c</field>
+        <value xsi:type="xsd:int">975</value>
+    </values>
+    <values>
+        <field>Rent__c</field>
+        <value xsi:type="xsd:int">22</value>
+    </values>
+    <values>
+        <field>Type__c</field>
+        <value xsi:type="xsd:string">Property</value>
+    </values>
+</CustomMetadata>
